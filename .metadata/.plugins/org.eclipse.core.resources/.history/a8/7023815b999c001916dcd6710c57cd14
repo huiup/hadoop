@@ -1,0 +1,9 @@
+package com.jike.sortprofit;
+
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.mapreduce.Mapper;
+
+public class SortProfitMapper extends Mapper<LongWritable Text, intWritable, intWritable>{
+
+	map
+}

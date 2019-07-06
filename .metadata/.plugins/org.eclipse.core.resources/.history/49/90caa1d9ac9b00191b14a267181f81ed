@@ -1,0 +1,25 @@
+package com.jike.guanxi;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class GuanxiReducer extends Reducer<Text, Text, Text, Text>{
+	@Override
+	protected void reduce(Text key, Iterable<Text> value, Reducer<Text, Text, Text, Text>.Context context)
+			throws IOException, InterruptedException {
+		List<Text> li = new ArrayList<>();
+		li.add(key);
+		Iterator<Text> it = value.iterator();
+		while(it.hasNext()){
+			li.add(it.next());
+		}
+		context.write(key, new Text());
+
+	}
+
+}

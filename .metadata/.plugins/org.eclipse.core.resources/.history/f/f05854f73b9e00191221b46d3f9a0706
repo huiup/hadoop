@@ -1,0 +1,32 @@
+package com.jike.telecom;
+
+import java.io.IOException;
+
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.lib.input.FileSplit;
+
+public class TelecomMapper extends Mapper<LongWritable, Text, Text, Bean> {
+
+	@Override
+	protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, Bean>.Context context)
+			throws IOException, InterruptedException {
+		String line = value.toString();
+		String[] arr = line.split("\\|");
+		Bean bean = new Bean();
+		
+		FileSplit fs = (FileSplit) context.getInputSplit();
+		String fileName = fs.getPath().getName();
+		String reportTime = fileName.split("_")[1];
+
+		bean.setReportTime(reportTime);
+		bean.setAppType(Integer.parseInt(arr[22]));
+		bean.setAppSubtype(Integer.parseInt(arr[23]));
+		bean.setUserIP(arr[16]);
+		bean.setUserPort(Integer.parseInt(arr[28]));
+		bean.setAppServerIP(arr[30]);
+		bean.setAppServerPort(Integer.parseInt(arr[28]));
+	}
+}

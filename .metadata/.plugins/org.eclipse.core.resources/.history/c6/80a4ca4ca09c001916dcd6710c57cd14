@@ -1,0 +1,52 @@
+package com.jike.sortprofit;
+
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+
+import org.apache.hadoop.io.WritableComparable;
+
+public class Bean implements WritableComparable<Bean>{
+
+	
+	private int chengben;
+	private int profit;
+    
+	
+	public int getChengben() {
+		return chengben;
+	}
+
+	public void setChengben(int chengben) {
+		this.chengben = chengben;
+	}
+
+	public int getProfit() {
+		return profit;
+	}
+
+	public void setProfit(int profit) {
+		this.profit = profit;
+	}
+
+	public void readFields(DataInput in) throws IOException {
+		// TODO Auto-generated method stub
+		this.chengben=in.readInt();
+		this.profit=in.readInt();
+	}
+
+	@Override
+	public void write(DataOutput out) throws IOException {
+		// TODO Auto-generated method stub
+		out.writeInt(chengben);
+		out.writeInt(profit);
+	}
+
+	@Override
+	public int compareTo(Bean o) {
+		// TODO Auto-generated method stub
+		return o.profit-this.profit;
+
+	}
+
+}

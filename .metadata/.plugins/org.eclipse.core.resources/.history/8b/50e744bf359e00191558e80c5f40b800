@@ -1,0 +1,22 @@
+package com.jike.telecom;
+
+public class Bean {
+
+	private String reportTime;
+	private String cellid;
+	private int appType;
+	private int appSubtype;
+	private String userIP;
+	private int userPort;
+	private String appServerIP;
+	private int appServerPort;
+	private String host;
+	private int attempts;
+	private int accepts;
+	private long trafficUL;
+	private long trafficDL;
+	private long retranUL;
+	private long retranDL;
+	private long transDelay;
+
+}

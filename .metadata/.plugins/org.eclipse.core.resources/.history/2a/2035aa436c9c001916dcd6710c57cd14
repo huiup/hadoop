@@ -1,0 +1,26 @@
+package com.jike.score4;
+
+import java.io.IOException;
+import java.util.Iterator;
+
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+
+public class ScoreReducer extends Reducer<Text, ScoreBean, Text, IntWritable>{
+
+	@Override
+	protected void reduce(Text key, Iterable<ScoreBean> value, Reducer<Text, ScoreBean, Text, IntWritable>.Context context)
+			throws IOException, InterruptedException {
+		int li = 0;
+		ScoreBean sb = new ScoreBean();
+		Iterator<ScoreBean> it = value.iterator();
+		while(it.hasNext()){
+			ScoreBean next = it.next();
+			sb.setChinese(next.getChinese()+sb.getChinese());
+		}
+		context.write(key,new IntWritable(li));
+	}
+}

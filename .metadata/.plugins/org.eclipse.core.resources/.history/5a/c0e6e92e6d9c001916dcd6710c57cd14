@@ -1,0 +1,21 @@
+package com.jike.score4;
+
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Partitioner;
+
+import com.jike.shop.ShopBean;
+
+public class ScorePartitioner extends Partitioner<Text, ScoreBean>{
+
+	@Override
+	public int getPartition(Text key, ScoreBean value, int numreducertask) {
+		
+		if(value.getName().equals("tianmao")){
+			return 0;
+		}
+		if(value.getName().equals("jingdong")){
+			return 1;
+		}else{
+			return 2;
+		}
+	}

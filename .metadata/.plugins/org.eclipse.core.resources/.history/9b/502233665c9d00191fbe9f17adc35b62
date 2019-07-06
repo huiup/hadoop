@@ -1,0 +1,28 @@
+package com.jike.join;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class JoinReducer extends Reducer<IntWritable, Item, IntWritable, Item>{
+
+	
+	Map<String,Item> productMap = new HashMap<>();
+	@Override
+	protected void reduce(IntWritable key, Iterable<Item> value,
+			Reducer<IntWritable, Item, IntWritable, Item>.Context context) throws IOException, InterruptedException {
+		ArrayList<Item> list = new ArrayList<>();
+		
+		for(Item values:value){
+			Item item=values.clone();
+			list.add(item);
+			if(values.getGoodId()){
+				
+			}
+		}
+	}
+}

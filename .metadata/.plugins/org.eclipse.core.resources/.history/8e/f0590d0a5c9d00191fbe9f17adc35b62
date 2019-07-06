@@ -1,0 +1,15 @@
+package com.jike.join;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class JoinReducer extends Reducer<IntWritable, Item, IntWritable, Item>{
+
+	@Override
+	protected void reduce(IntWritable key, Iterable<Item> value,
+			Reducer<IntWritable, Item, IntWritable, Item>.Context context) throws IOException, InterruptedException {
+		
+	}
+}

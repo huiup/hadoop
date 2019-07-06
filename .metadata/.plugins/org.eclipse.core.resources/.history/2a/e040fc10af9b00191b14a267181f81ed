@@ -1,0 +1,37 @@
+package com.jike.guanxi;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class GuanxiReducer extends Reducer<Text, Text, Text, NullWritable> {
+	@Override
+	protected void reduce(Text key, Iterable<Text> value, Reducer<Text, Text, Text, NullWritable>.Context context)
+			throws IOException, InterruptedException {
+		List<String> ye = new ArrayList<>();
+		List<String> sun = new ArrayList<>();
+		for (Text res : value) {
+			if (res.toString().startsWith("+")) {
+				ye.add(res.toString().substring(1));
+			}else{
+				sun.add(res.toString().substring(1));
+			}
+		}
+		if(ye.size()>0&&sun.size()>0){
+			String s1 = ye.toString();
+			String s2 = sun.toString();
+			
+			String rel = "Ò¯Ò¯±²"+s1+"---Ëï×Ó±²"+s2;
+			context.write(new Text(rel),NullWritable.get());
+
+		}
+
+
+	}
+
+}

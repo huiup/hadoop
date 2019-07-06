@@ -1,0 +1,5 @@
+package com.jike.inputformat;
+
+public class LineNumberReader {
+
+}

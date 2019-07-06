@@ -1,0 +1,34 @@
+package com.jike.telecom;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class TelecomReducer extends Reducer<Text, Bean, Bean, NullWritable>{
+
+	@Override
+	protected void reduce(Text key, Iterable<Bean> value, Reducer<Text, Bean, Bean, NullWritable>.Context context)
+			throws IOException, InterruptedException {
+		Bean result = new Bean();
+		for(Bean values:value){
+//			result.setReportTime(reportTime);
+//			result.setAppType(appType);
+//			result.setAppSubtype(appSubtype);
+//			result.setCellid(cellid);
+//			result.setUserIP(userIP);
+//			result.setUserPort(userPort);
+//			result.setAppServerIP(appServerIP);
+//			result.setAppServerPort(appServerPort);
+//			result.setHost(host);
+//			result.setAttempts(attempts);
+//			result.setAccepts(accepts);
+//			result.setTrafficUL(trafficUL);
+//			result.setTrafficDL(trafficDL);
+//			result.setRetranUL(retranUL);
+//			result.setRetranDL(retranDL);
+//			result.setTransDelay(transDelay);
+		}
+	}
+}

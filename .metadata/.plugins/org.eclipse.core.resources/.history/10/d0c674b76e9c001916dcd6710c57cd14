@@ -1,0 +1,38 @@
+package com.jike.score4;
+
+import java.io.IOException;
+
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.lib.input.FileSplit;
+
+public class ScoreMapper extends Mapper<LongWritable, Text, Text, ScoreBean> {
+	@Override
+	protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, ScoreBean>.Context context)
+			throws IOException, InterruptedException {
+
+		String line = value.toString();
+		FileSplit fs = (FileSplit) context.getInputSplit();
+
+		Path path = fs.getPath();
+		String fileName = path.getName();
+		String[] arr = line.split(" ");
+		ScoreBean sb = new ScoreBean();
+		sb.setName(arr[0]);
+		sb.setMonth(Integer.parseInt(arr[0]));
+		if(fileName.equals("chinese.txt")){
+			sb.setChinese(Integer.parseInt(arr[2]));
+		}
+		if(fileName.equals("english.txt")){
+			sb.setChinese(Integer.parseInt(arr[2]));
+		}
+		if(fileName.equals("math.txt")){
+			sb.setChinese(Integer.parseInt(arr[2]));
+		}
+//		ScoreBean sb = new ScoreBean(arr[0], Long.parseLong(arr[1]), Long.parseLong(arr[2]), Long.parseLong(arr[3]));
+		context.write(new Text(sb.getName()), sb);
+	}
+
+}
